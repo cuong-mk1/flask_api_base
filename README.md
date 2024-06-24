@@ -103,6 +103,15 @@ Populate seed data into db:
 ```docker
 docker-compose exec web python manage.py seed_db
 ```
+``` docker  create migration file
+docker-compose exec web flask db migrate -m "update_table_log"
+```
+``` docker migration up
+docker-compose exec web flask db upgrade
+```
+``` docker migration down
+docker-compose exec web flask db downgrade
+```
 Want to reset everything?
 ```docker
 docker-compose down -v

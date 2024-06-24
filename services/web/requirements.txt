@@ -28,3 +28,4 @@ mimesis==4.0.0
 click==8.0
 vine==5.0.0
 jinja2==3.0.3
+Flask-Migrate==4.0.7

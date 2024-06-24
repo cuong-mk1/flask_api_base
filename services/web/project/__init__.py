@@ -6,6 +6,7 @@ from flask_mail import Mail
 from celery import Celery
 from oauthlib.oauth2 import WebApplicationClient
 from .api.common.base_definitions import BaseFlask
+from flask_migrate import Migrate
 
 # flask config
 conf = Config(root_path=os.path.abspath(os.path.dirname(__file__)))
@@ -15,6 +16,7 @@ conf.from_object(os.getenv('APP_SETTINGS'))
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 mail = Mail()
+migrate = Migrate()
 
 
 def create_app():
@@ -24,7 +26,8 @@ def create_app():
     db.init_app(app)
     bcrypt.init_app(app)
     mail.init_app(app)
-
+    # migrate init
+    migrate.init_app(app, db)
     # register blueprints
     from .api.v1.auth import auth_blueprints
     from .api.v1.user import user_blueprints
