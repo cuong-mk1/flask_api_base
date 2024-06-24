@@ -93,11 +93,13 @@ def test_login(file):
         return 0
     return 1
 @cli.command()
-def cov():
+@click.argument('file', required=False)
+def cov(file):
     """
     Run the unit tests with coverage
     """
-    tests = unittest.TestLoader().discover('tests')
+    pattern = 'test_log.py' if file is None else file
+    tests = unittest.TestLoader().discover('tests', pattern=pattern)
     result = unittest.TextTestRunner(verbosity=2).run(tests)
     if result.wasSuccessful():
         COV.stop()
