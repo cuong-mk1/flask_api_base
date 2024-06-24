@@ -66,7 +66,7 @@ def seed_db():
     user_group_association2 = UserGroupAssociation(user=user2, group=group)
     db.session.add(user_group_association2)
     db.session.commit()
-
+## Test all the test cases
 @cli.command()
 @click.argument('file', required=False)
 def test(file):
@@ -79,7 +79,19 @@ def test(file):
     if result.wasSuccessful():
         return 0
     return 1
-
+## Test login test cases
+@cli.command("test_login")
+@click.argument('file', required=False)
+def test_login(file):
+    """
+    Run the tests without code coverage
+    """
+    pattern = 'test_log.py' if file is None else file
+    tests = unittest.TestLoader().discover('tests', pattern=pattern)
+    result = unittest.TextTestRunner(verbosity=2).run(tests)
+    if result.wasSuccessful():
+        return 0
+    return 1
 @cli.command()
 def cov():
     """

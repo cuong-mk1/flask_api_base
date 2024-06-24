@@ -1,11 +1,12 @@
 
 # Flask REST API Boilerplate
 
-A better boilerplate for RESTful APIs using Flask.
+RESTful APIs using Flask.
 #### Tech Stack:
 
  - **Web framework:** Flask
  - **ORM:** SQLAlchemy
+- **Migration:** Flask-Migrate
  - **Database:** PostgresSQL
  - **Parsing/Validation:** Pydantic
  - **Containerization:** Docker
