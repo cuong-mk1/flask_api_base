@@ -17,6 +17,8 @@ from project.models.user import User
 from project.models.user import UserRole
 from project.models.group import Group
 from project.models.user_group_association import UserGroupAssociation
+from project.models.logs import Log
+
 
 import unittest
 cli = FlaskGroup(app)
@@ -38,6 +40,13 @@ def create_db():
     Create the database
     """
     db.drop_all()
+    db.create_all()
+    db.session.commit()
+@cli.command("migrate_db")
+def migrate_db():
+    """
+    migrate the database
+    """
     db.create_all()
     db.session.commit()
 
